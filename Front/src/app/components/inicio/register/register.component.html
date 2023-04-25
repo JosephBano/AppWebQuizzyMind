@@ -1,0 +1,41 @@
+<div class="container">
+    <div class="row" style="width: 100%">
+        <div class="col-lg-6 offset-lg-3">
+            <div class="card text-center" style="padding: 3rem">
+                <h3>Registrarse</h3>
+                <br>
+                <form [formGroup]="register" (ngSubmit)=registrarUsuario()>
+                    <div class="form-group" style="text-align: start;">
+                        <input type="text" placeholder="Usuario" class="form-control" formControlName="usuario">
+                        <span class="text-danger ml-2" 
+                        *ngIf="register.get('usuario')?.errors?.['required'] && register.get('usuario')?.touched">
+                            El usuario es <strong>requerido</strong>
+                        </span>
+                    </div>
+                    <div class="form-group" style="text-align: start;">
+                        <input type="password" placeholder="Contraseña" class="form-control" formControlName="password">
+                        <span class="text-danger ml-2" 
+                        *ngIf="register.get('password')?.errors?.['required'] && register.get('password')?.touched">
+                            La nueva Contraseña es <strong>requerida</strong>
+                        </span>
+                        <span class="text-danger ml-2" 
+                        *ngIf="register.get('password')?.hasError?.('minlength') && register.get('password')?.touched">
+                            La Contraseña debe tener minimo <strong>4 caracteres</strong>
+                        </span>
+                    </div>
+                    <div class="form-group" style="text-align: start;">
+                        <input type="password" placeholder="Repetir Contraseña" class="form-control" formControlName="confirmPassword">
+                        <span class="text-danger ml-2" 
+                        *ngIf="register.errors?.['notSame']">
+                            Contraseñas <strong>distintas</strong>
+                        </span>
+                    </div>
+                    <div class="formGroup">
+                        <button class="btn btn-primary mr-2 btn-reg" type="submit">Aceptar</button>
+                        <button class="btn btn-secondary" routerLink="/login">Volver</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    font-family: 'Bruno Ace', cursive;
+}
+
+.btb-reg{
+    background-color: aqua;
+    border-color: aqua;
+}

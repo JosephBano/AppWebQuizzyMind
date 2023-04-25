@@ -1,0 +1,32 @@
+p {
+    font-family: 'Bruno Ace', cursive;
+    font-size: 2.3em;
+    color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+hr {
+    border-width: 3px;
+    max-width: 65px;
+    border-color: aqua;
+}
+
+.btn-xl {
+    background-color: aqua;
+    border-color: aqua;
+    border-radius: 100px;
+    margin: 10px;
+    padding: 1rem 2rem;
+}
+
+.btn-xl:hover {
+    background-color: aquamarine;
+    border-color: aquamarine;
+    border-width: 4px;
+}
