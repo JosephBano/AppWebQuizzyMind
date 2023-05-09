@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit{
     }
     this.loading = true;
     setTimeout( () =>{
-      if(usuario.username === 'joseph' && usuario.password === 'admin123'){
+      if(usuario.username === 'admin' && usuario.password === 'admin123'){
         this.login.reset();
         this.router.navigate(['/dashboard']);
       } else {
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit{
         this.login.reset();
       }
       this.loading = false;
-    }, 3000)
+    }, 1500)
     console.log(usuario);
     
   }
