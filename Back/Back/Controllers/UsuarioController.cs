@@ -2,7 +2,10 @@
 using Back.Domain.Models;
 using Back.DTO;
 using Back.Utils;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace Back.Controllers
 {
@@ -38,12 +41,14 @@ namespace Back.Controllers
 
         //localhost:xxx/api/Usuario/CambiarPassword
         [Route("CambiarPassword")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpPut]
         public async Task<IActionResult> CambiarPassword([FromBody] CambiarPasswordDTO cambiarPassword)
         {
             try
             {
-                int idUsuario = 3;
+                var identity = HttpContext.User.Identity as ClaimsIdentity;
+                int idUsuario = JwtConfigurator.GetTokenIdUsuario(identity);
                 string passwordEncriptado = Encriptar.EncriptarPassword(cambiarPassword.passwordAnterior);
                 var usuario = await _usuarioService.ValidatePassword(idUsuario, passwordEncriptado);
                 if(usuario == null)

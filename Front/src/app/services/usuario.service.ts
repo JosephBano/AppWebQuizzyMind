@@ -10,9 +10,12 @@ export class UsuarioService {
 
   constructor( private http: HttpClient ) { }
 
-  private linkURL = 'https://localhost:7017/api/Usuario/CrearUsuario';
+  private appUrl = 'https://localhost:7017/api/Usuario';
   
-  SaveUser(usuario: Usuario): Observable<any> {
-    return this.http.post(this.linkURL, usuario);
+  saveUser(usuario: Usuario): Observable<any> {
+    return this.http.post(this.appUrl, usuario)
+  }
+  changePassword(changePassword: any): Observable<any> {
+    return this.http.put(this.appUrl + '/CambiarPassword', changePassword);
   }
 }

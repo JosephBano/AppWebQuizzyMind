@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+  constructor(private loginService: LoginService, private router: Router) { }
+  ngOnInit() {}
+  logOut(){
+    this.loginService.removeLocalStorge();
+    this.router.navigate(['/inicio']);
+  }
 }

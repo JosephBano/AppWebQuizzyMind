@@ -3,7 +3,11 @@ using Back.Domain.IServices;
 using Back.Persistence.Context;
 using Back.Persistence.Repositories;
 using Back.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Configuration;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,7 +30,24 @@ builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IUsuarioRepositorie, UsuarioRepositorie>();
 builder.Services.AddScoped<ILoginRepositorie, LoginRepositorie>();
 
+//Authentucation JB añade
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options => {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        };
+    });
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -35,7 +56,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+//Cors que JB añade
+
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyHeader()
+    .AllowAnyMethod());
+
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 
