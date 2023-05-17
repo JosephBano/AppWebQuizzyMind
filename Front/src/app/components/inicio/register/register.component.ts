@@ -35,7 +35,6 @@ export class RegisterComponent implements OnInit{
   this.loading = true;
   
   this.usuarioService.saveUser(usuario).subscribe(data => {
-      console.log(data);
       this.toastr.success('El usuario' + usuario.nombreUsuario + 'se ha registrado con exito!', 'Usuario registrado');
       this.router.navigate(['/inicio/login']);
     }, error => {

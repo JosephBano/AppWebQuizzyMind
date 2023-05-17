@@ -1,0 +1,18 @@
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+.icon-delete {
+  font-size: 39px;
+  cursor: pointer;
+  color: #ce4b4b;
+}
+.icon-add {
+  font-size: 30px;
+  cursor: pointer;
+  float: right;
+}
