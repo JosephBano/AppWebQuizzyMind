@@ -8,7 +8,7 @@ namespace Back.Domain.Models
         public int Id { get; set; }
 
         [Required]
-        [Column(TypeName = "varchar(100")]
+        [Column(TypeName = "varchar(100)")]
         public string Nombre { get; set; }
 
         [Required]
@@ -16,10 +16,12 @@ namespace Back.Domain.Models
         public string Descripcion { get; set; }
 
         public DateTime FechaCreacion { get; set; }
-        public int activo { get; set; }
+        public int Activo { get; set; }
+
         public int UsuarioId { get; set; }
+        
         public Usuario Usuario { get; set; }
 
-        public List<Pregunta> Pregunta { get; set; }
+        public List<Pregunta> listPreguntas { get; set; }
     }
 }

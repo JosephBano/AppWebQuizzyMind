@@ -8,11 +8,12 @@ import { Observable } from 'rxjs';
 })
 export class CuestionarioService {
 
+  constructor( private http: HttpClient) { }
+
   private appUrl = 'https://localhost:7017/api/Cuestionario';
+  
   tituloCuestionario?: string;
   descripcionCuestionario?: string;
-
-  constructor( private http: HttpClient) { }
 
   guardarCuestionario(cuestionario: Cuestionario): Observable<any>{
     return this.http.post(this.appUrl, cuestionario);

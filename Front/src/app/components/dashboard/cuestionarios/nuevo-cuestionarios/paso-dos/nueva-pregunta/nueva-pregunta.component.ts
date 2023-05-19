@@ -65,7 +65,7 @@ export class NuevaPreguntaComponent implements OnInit {
 
     arrayRespuestas.forEach((e: any, index: number) => {
       const respuesta: Respuesta = new Respuesta(e.descripcion, false);
-      if(index === e.esCorrecta){
+      if(index === this.rtaCorrecta){
         respuesta.esCorrecta = true
       }      
       arrayRta.push(respuesta);
@@ -79,6 +79,7 @@ export class NuevaPreguntaComponent implements OnInit {
   }
 
   reset() {
+    this.rtaCorrecta = 0;
     this.nuevaPregunta.reset();
     this.getRespuestas.clear();
     this.agregarRespuesta();

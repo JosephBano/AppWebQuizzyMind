@@ -25,10 +25,12 @@ builder.Services.AddDbContext<AplicationDbContext>(options =>
 //Services que JB añade
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<ICuestionarioService, CuestionarioService>();
 
 //Repositorie que JB añade
 builder.Services.AddScoped<IUsuarioRepositorie, UsuarioRepositorie>();
 builder.Services.AddScoped<ILoginRepositorie, LoginRepositorie>();
+builder.Services.AddScoped<ICuestionarioRepositorie, CuestionarioRepositorie>();
 
 //Authentucation JB añade
 
